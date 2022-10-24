@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "751392449970",
+    "project_id": "go-router-impl",
+    "storage_bucket": "go-router-impl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751392449970:android:ba641e4e271c7fed68b0ab",
+        "android_client_info": {
+          "package_name": "com.example.go_router_impl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751392449970-99iqnpeev1iam4a9rghppcl418h33r5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.go_router_impl",
+            "certificate_hash": "6dc5f872982f317461324f91d99f2f956c97d698"
+          }
+        },
+        {
+          "client_id": "751392449970-2mjb0f5gaebp0adarumstgb65bdpogh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2asXjXDPwtUsnRm0ZE5EWCkNjiho2ghU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751392449970-2mjb0f5gaebp0adarumstgb65bdpogh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

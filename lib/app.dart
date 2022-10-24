@@ -2,25 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_impl/screens/error_screen.dart';
 import 'package:go_router_impl/utils/login_state.dart';
-import 'package:provider/provider.dart';
 import 'utils/routes.dart';
 
 final LoginState loginState = LoginState();
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
+
+  static BuildContext? globalGoNavigator;
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      MyApp.globalGoNavigator =
+          goRouter.routerDelegate.navigatorKey.currentContext;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<LoginState>(create: (_) => LoginState())
-      ],
-      child: MaterialApp.router(
-        routeInformationParser: goRouter.routeInformationParser,
-        routeInformationProvider: goRouter.routeInformationProvider,
-        routerDelegate: goRouter.routerDelegate,
-      ),
+    return MaterialApp.router(
+      routeInformationParser: goRouter.routeInformationParser,
+      routeInformationProvider: goRouter.routeInformationProvider,
+      routerDelegate: goRouter.routerDelegate,
+      key: navigatorKey,
     );
   }
 

@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_impl/app.dart';
+import 'package:go_router_impl/utils/firebase_messaging_service.dart';
+import 'package:go_router_impl/utils/firebase_service.dart';
 import 'package:go_router_impl/utils/routes.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FirebaseService.getDeviceToken().then((value) {
+        FirebaseMessagingService.initFirebaseNotification().then((value) {
+          FirebaseMessagingService.listenToFirebasePushNotification();
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
