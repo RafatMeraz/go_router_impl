@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:go_router_impl/utils/version_manager/module_enums.dart';
 
 import '../../utils/routes.dart';
 
@@ -23,7 +23,9 @@ class Carts extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               onTap: () {
-                context.pushNamed(Routes.productDetails,
+                Routes.pushNamed(
+                    routeName: Routes.productDetails,
+                    moduleName: Module.products,
                     params: {'name': products[index]});
               },
               title: Text(products[index]),

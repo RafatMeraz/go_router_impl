@@ -20,7 +20,10 @@ dependencies:
   firebase_core: ^2.1.0
   firebase_messaging: ^14.0.2
   firebase_analytics: ^10.0.2
-  cloud_firestore: ^4.1.0
+  cloud_firestore: ^4.2.0
+
+  # app
+  package_info_plus: ^3.0.2
 
 
 dev_dependencies:

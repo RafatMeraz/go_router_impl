@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router_impl/app.dart';
 import 'package:go_router_impl/screens/carts/carts.dart';
 import 'package:go_router_impl/screens/login.dart';
 import 'package:go_router_impl/screens/products/product_details.dart';
@@ -7,8 +8,11 @@ import 'package:go_router_impl/screens/products/products.dart';
 import 'package:go_router_impl/screens/home/home.dart';
 import 'package:go_router_impl/screens/profile/personal_info.dart';
 import 'package:go_router_impl/screens/profile/profile.dart';
+import 'package:go_router_impl/utils/version_manager/module_enums.dart';
+import 'package:go_router_impl/utils/version_manager/version_manager.dart';
 
 import '../screens/profile/professional_info.dart';
+import '../screens/update_required_dialog.dart';
 
 abstract class Routes {
   static const String login = 'login';
@@ -79,17 +83,34 @@ abstract class Routes {
 
   /// carts module routes
   static final GoRoute cartsRoutes = GoRoute(
-      path: 'carts',
-      name: carts,
-      builder: (BuildContext context, GoRouterState state) {
-        return Carts();
-      },
-      routes: const [
-        // GoRoute(
-        //     path: productDetails,
-        //     builder: (BuildContext context, GoRouterState state) {
-        //       final String name = state.params['name'] ?? '';
-        //       return ProductDetails(productName: name);
-        //     })
-      ]);
+    path: 'carts',
+    name: carts,
+    builder: (BuildContext context, GoRouterState state) {
+      return Carts();
+    },
+  );
+
+  static void pushNamed(
+      {required Module moduleName,
+      required String routeName,
+      Map<String, String>? params}) {
+    if (VersionManager.minVersionSatisfied(moduleName)) {
+      GoRouter.of(MyApp.globalGoNavigator!)
+          .pushNamed(routeName, params: params ?? {});
+    } else {
+      showUpdateRequiredDialog(MyApp.globalGoNavigator!);
+    }
+  }
+
+  static void goNamed(
+      {required Module moduleName,
+      required String routeName,
+      Map<String, String>? params}) {
+    if (VersionManager.minVersionSatisfied(moduleName)) {
+      GoRouter.of(MyApp.globalGoNavigator!)
+          .goNamed(routeName, params: params ?? {});
+    } else {
+      showUpdateRequiredDialog(MyApp.globalGoNavigator!);
+    }
+  }
 }

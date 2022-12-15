@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:go_router_impl/app.dart';
 import 'package:go_router_impl/utils/firebase_messaging_service.dart';
 import 'package:go_router_impl/utils/firebase_service.dart';
 import 'package:go_router_impl/utils/routes.dart';
+import 'package:go_router_impl/utils/version_manager/module_enums.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -46,22 +46,26 @@ class _HomeState extends State<Home> {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  context.goNamed(Routes.products);
+                  Routes.goNamed(
+                      routeName: Routes.products, moduleName: Module.products);
                 },
                 child: const Text('Products')),
             ElevatedButton(
                 onPressed: () {
-                  context.goNamed(Routes.carts);
+                  Routes.goNamed(
+                      routeName: Routes.carts, moduleName: Module.carts);
                 },
                 child: const Text('Carts')),
             ElevatedButton(
                 onPressed: () {
-                  context.goNamed(Routes.profile);
+                  Routes.goNamed(
+                      routeName: Routes.profile, moduleName: Module.profile);
                 },
                 child: const Text('Profile')),
             ElevatedButton(
                 onPressed: () {
-                  context.goNamed(Routes.personalInfo);
+                  Routes.goNamed(
+                      routeName: Routes.personalInfo, moduleName: Module.profile);
                 },
                 child: const Text('Personal Info')),
           ],

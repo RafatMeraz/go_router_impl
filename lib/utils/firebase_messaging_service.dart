@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
-import 'package:go_router_impl/app.dart';
+import 'package:go_router_impl/utils/routes.dart';
+import 'package:go_router_impl/utils/version_manager/module_enums.dart';
 
 abstract class FirebaseMessagingService {
   static final FirebaseMessaging _firebaseMessaging =
@@ -49,9 +49,9 @@ abstract class FirebaseMessagingService {
       {String? navigatorType}) {
     WidgetsFlutterBinding.ensureInitialized();
     if ((navigatorType ?? 'go') == 'go') {
-      MyApp.globalGoNavigator!.goNamed(screenName, params: params);
+      Routes.goNamed(moduleName: Module.notFound, routeName: screenName, params: params);
     } else {
-      MyApp.globalGoNavigator!.pushNamed(screenName, params: params);
+      Routes.goNamed(moduleName: Module.notFound, routeName: screenName, params: params);
     }
   }
 }
