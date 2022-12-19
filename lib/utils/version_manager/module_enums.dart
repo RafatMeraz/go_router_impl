@@ -8,3 +8,9 @@ enum Module {
   carts,
   notFound
 }
+
+Module stringToModuleName(String name) {
+  return Module.values.firstWhere(
+          (e) => e.name == name,
+      orElse: () => Module.notFound);
+}

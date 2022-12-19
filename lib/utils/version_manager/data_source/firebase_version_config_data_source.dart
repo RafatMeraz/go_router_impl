@@ -11,9 +11,7 @@ class FirebaseVersionConfigDataSource implements VersionConfigDataSource {
     final documents = await FirestoreUtils.getDocumentSnapshots(
         FirestoreUtils.versionManagementDatabase);
     for (var element in documents.docs) {
-      final Module moduleName = Module.values.firstWhere(
-          (e) => e.name == element.id,
-          orElse: () => Module.notFound);
+      final Module moduleName = stringToModuleName(element.id);
       if (moduleName != Module.notFound) {
         final VersionConfig versionConfig = VersionConfig(
             module: moduleName,

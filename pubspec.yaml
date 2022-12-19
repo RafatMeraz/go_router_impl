@@ -21,6 +21,7 @@ dependencies:
   firebase_messaging: ^14.0.2
   firebase_analytics: ^10.0.2
   cloud_firestore: ^4.2.0
+  firebase_remote_config: ^3.0.7
 
   # app
   package_info_plus: ^3.0.2

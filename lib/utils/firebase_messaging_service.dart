@@ -41,17 +41,22 @@ abstract class FirebaseMessagingService {
         screenParams[key] = value.toString();
       });
       _navigateToScreen(messageMap['screenName'], screenParams,
-          navigatorType: messageMap['navigationType']);
+          navigatorType: messageMap['navigationType'],
+          moduleName: messageMap['moduleName']);
     }
   }
 
   static void _navigateToScreen(String screenName, Map<String, String> params,
-      {String? navigatorType}) {
+      {String? navigatorType, String? moduleName}) {
     WidgetsFlutterBinding.ensureInitialized();
     if ((navigatorType ?? 'go') == 'go') {
-      Routes.goNamed(moduleName: Module.notFound, routeName: screenName, params: params);
+      Routes.goNamed(
+          moduleName: stringToModuleName(moduleName ?? 'notFound'),
+          routeName: screenName,
+          params: params);
     } else {
-      Routes.goNamed(moduleName: Module.notFound, routeName: screenName, params: params);
+      Routes.pushNamed(
+          moduleName: stringToModuleName(moduleName ?? 'notFound'), routeName: screenName, params: params);
     }
   }
 }

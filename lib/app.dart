@@ -34,6 +34,9 @@ class _MyAppState extends State<MyApp> {
       routerDelegate: goRouter.routerDelegate,
       key: navigatorKey,
     );
+    // return MaterialApp(
+    //   home: RemoteConfigScreen(),
+    // );
   }
 
   final GoRouter goRouter = GoRouter(
